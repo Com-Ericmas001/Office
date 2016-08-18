@@ -1,7 +1,5 @@
 # Com.Ericmas001.Office
 
-
-###Current Version: 0.1.0 *(2015-06-11)*
 <table align="center" width="100%">
     <tbody>
         <tr>
