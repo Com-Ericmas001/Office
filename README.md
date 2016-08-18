@@ -10,7 +10,8 @@
             <a href="https://www.nuget.org/packages/Com.Ericmas001.Office.Access/" target="_blank">
             Com.Ericmas001.Office.Access <br />
             <img src="https://raw.githubusercontent.com/NuGet/Home/master/resources/nuget.png" alt="NuGet" width=150 />
-            </a>
+            </a> <br />
+            Current Version: 0.1.0 <i>(2016-06-11)</i>
             </td>
             <td align="left">
                 <div class="nuget-badge">
@@ -25,7 +26,8 @@
             <a href="https://www.nuget.org/packages/Com.Ericmas001.Office.Excel/" target="_blank">
             Com.Ericmas001.Office.Excel <br />
             <img src="https://raw.githubusercontent.com/NuGet/Home/master/resources/nuget.png" alt="NuGet" width=150 />
-            </a>
+            </a> <br />
+            Current Version: 0.2.0 <i>(2016-08-18)</i>
             </td>
             <td align="left">
                 <div class="nuget-badge">
@@ -40,7 +42,8 @@
             <a href="https://www.nuget.org/packages/Com.Ericmas001.Office.Word/" target="_blank">
             Com.Ericmas001.Office.Word <br />
             <img src="https://raw.githubusercontent.com/NuGet/Home/master/resources/nuget.png" alt="NuGet" width=150 />
-            </a>
+            </a> <br />
+            Current Version: 0.1.0 <i>(2016-06-11)</i>
             </td>
             <td align="left">
                 <div class="nuget-badge">
