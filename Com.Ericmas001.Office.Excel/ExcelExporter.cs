@@ -15,8 +15,9 @@ namespace Com.Ericmas001.Office.Excel
         public event EventHandler<EventArgs<int>> ExportationStarted = delegate { };
         public event EventHandler<EventArgs<bool>> ExportationEnded = delegate { };
 
-        public void ExportDataTable(DataTable table)
+        public void ExportDataTable(DataTable table, bool useView = false)
         {
+            int totalCount = useView ? table.DefaultView.Count : table.Rows.Count;
             ExportationStarted(this, new EventArgs<int>(table.Rows.Count));
             new Thread(new ThreadStart(delegate
             {
@@ -36,7 +37,7 @@ namespace Com.Ericmas001.Office.Excel
                     excelHeaders.Interior.Color = ColorTranslator.ToOle(Color.Black);
                     excelHeaders.Font.Color = ColorTranslator.ToOle(Color.White);
                     var i = 2;
-                    foreach (DataRow dr in table.Rows)
+                    foreach (DataRow dr in useView ? table.DefaultView.OfType<DataRowView>().Select(x => x.Row) : table.Rows.OfType<DataRow>())
                     {
                         ProgressUpdated(this, new EventArgs<int>(i - 1));
                         var data = new string[cols.Length];
