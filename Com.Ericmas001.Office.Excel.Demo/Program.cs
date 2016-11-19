@@ -17,11 +17,13 @@ namespace Com.Ericmas001.Office.Excel.Demo
             const string ID = "ID";
             const string FRUIT = "Fruit";
             const string FAVORITE = "Favorite";
+            const string DESC = "Description";
 
             var table = new DataTable();
             table.Columns.Add(ID);
             table.Columns.Add(FRUIT);
             table.Columns.Add(FAVORITE);
+            table.Columns.Add(DESC);
 
             string[] fruits = {"Apple", "Orange", "Pineapple", "Grapes", "Peach", "Pear", "Strawberry", "Raspberry", "BlueBerry", "Lemon"};
             for (var i = 0; i < 100; i++)
@@ -29,7 +31,8 @@ namespace Com.Ericmas001.Office.Excel.Demo
                 var row = table.NewRow();
                 row[ID] = (i + 1).ToString();
                 row[FRUIT] = fruits[i%fruits.Length];
-                row[FAVORITE] = (i*(i + 2))%7 == 0 ? "X" : "";
+                row[FAVORITE] = (i * (i + 2)) % 7 == 0 ? "X" : "";
+                row[DESC] = fruits[i % fruits.Length] + Environment.NewLine + fruits[i % (fruits.Length/2)];
                 table.Rows.Add(row);
             }
 

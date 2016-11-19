@@ -51,6 +51,7 @@ namespace Com.Ericmas001.Office.Excel
                             data[j] = dr[j].ToString();
                         var excelRow = sheet.Range[sheet.Cells[i, 1], sheet.Cells[i, cols.Count]];
                         excelRow.Value2 = data;
+                        excelRow.Rows.AutoFit();
                         i++;
                     }
                     foreach (var colName in parms.ColumnParms.Keys)
@@ -78,6 +79,8 @@ namespace Com.Ericmas001.Office.Excel
                     var firstRow = (ExcelApp.Range) sheet.Rows[1];
                     firstRow.AutoFilter(1, Type.Missing, ExcelApp.XlAutoFilterOperator.xlAnd, Type.Missing, true);
                     firstRow.EntireColumn.AutoFit();
+                    var firstcol = (ExcelApp.Range)sheet.Columns[1];
+                    firstcol.EntireRow.AutoFit();
                     excelApp.Visible = true;
                     ExportationEnded(this, new EventArgs<bool>(true));
                 }
