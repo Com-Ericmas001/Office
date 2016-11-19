@@ -25,7 +25,7 @@
             Com.Ericmas001.Office.Excel <br />
             <img src="https://raw.githubusercontent.com/NuGet/Home/master/resources/nuget.png" alt="NuGet" width=150 />
             </a> <br />
-            Current Version: 0.3.0 <i>(2016-11-18)</i>
+            Current Version: 0.4.0 <i>(2016-11-19)</i>
             </td>
             <td align="left">
                 <div class="nuget-badge">
