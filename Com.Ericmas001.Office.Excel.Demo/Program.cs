@@ -36,7 +36,30 @@ namespace Com.Ericmas001.Office.Excel.Demo
                 table.Rows.Add(row);
             }
 
-            var parms = new ExcelExportParm();
+            var parms = new ExcelExportParm
+            {
+                HeaderFormat = new ExcelFormat
+                {
+                    Bold = true,
+                    BackColor = Color.Aqua,
+                    ForeColor = Color.Black,
+                    Border = new ExcelBorder()
+                    {
+                        BorderStyle = XlLineStyle.xlContinuous,
+                        BorderThickness = 4
+                    }
+                },
+                DefaultCellFormat = new ExcelFormat()
+                {
+                    ForeColor = Color.BlueViolet,
+                    Border = new ExcelBorder()
+                    {
+                        BorderColor = Color.Red,
+                        BorderStyle = XlLineStyle.xlContinuous,
+                        BorderThickness = 2d
+                    }
+                }
+            };
 
             var favColPArms = new ColumnExportParm
             {

@@ -52,6 +52,7 @@
     <Compile Include="ExcelExporter.cs" />
     <Compile Include="ExcelUtil.cs" />
     <Compile Include="ExportParms\ColumnExportParm.cs" />
+    <Compile Include="ExportParms\ExcelBorder.cs" />
     <Compile Include="ExportParms\ExcelFormat.cs" />
     <Compile Include="ExportParms\ExcelConditionnalFormating.cs" />
     <Compile Include="ExportParms\ExcelExportParm.cs" />

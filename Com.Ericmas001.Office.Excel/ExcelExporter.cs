@@ -39,9 +39,9 @@ namespace Com.Ericmas001.Office.Excel
 
                     var excelHeaders = sheet.Range[sheet.Cells[1, 1], sheet.Cells[1, cols.Count]];
                     excelHeaders.Value2 = cols.ToArray();
-                    excelHeaders.Font.Bold = parms.HeaderFormat.Bold;
-                    excelHeaders.Interior.Color = ColorTranslator.ToOle(parms.HeaderFormat.BackColor);
-                    excelHeaders.Font.Color = ColorTranslator.ToOle(parms.HeaderFormat.ForeColor);
+                    ApplyStyle(excelHeaders, parms.DefaultCellFormat);
+                    if(parms.HeaderFormat != null)
+                        ApplyStyle(excelHeaders, parms.HeaderFormat);
                     var i = 2;
                     foreach (DataRow dr in parms.UseView ? table.DefaultView.OfType<DataRowView>().Select(x => x.Row) : table.Rows.OfType<DataRow>())
                     {
@@ -50,6 +50,7 @@ namespace Com.Ericmas001.Office.Excel
                         for (var j = 0; j < data.Length; ++j)
                             data[j] = dr[j].ToString();
                         var excelRow = sheet.Range[sheet.Cells[i, 1], sheet.Cells[i, cols.Count]];
+                        ApplyStyle(excelRow, parms.DefaultCellFormat);
                         excelRow.Value2 = data;
                         excelRow.Rows.AutoFit();
                         i++;
@@ -69,10 +70,20 @@ namespace Com.Ericmas001.Office.Excel
                         {
                             ExcelApp.FormatCondition cond = xlCol.FormatConditions.Add(fcond.Type, fcond.Operator, fcond.Formula);
 
-                            cond.Font.Bold = fcond.Format.Bold;
-                            cond.Font.Color = ColorTranslator.ToOle(fcond.Format.ForeColor);
-                            cond.Interior.Color = ColorTranslator.ToOle(fcond.Format.BackColor);
+                            ApplyBorderStyle(parms.DefaultCellFormat.Border, cond.Borders, true);
+                            ApplyFontStyle(parms.DefaultCellFormat, cond.Font);
+                            ApplyInteriorStyle(parms.DefaultCellFormat, cond.Interior);
+
+                            ApplyBorderStyle(fcond.Format.Border, cond.Borders, true);
+                            ApplyFontStyle(fcond.Format, cond.Font);
+                            ApplyInteriorStyle(fcond.Format, cond.Interior);
                         }
+                        ExcelApp.FormatCondition dummyCond = xlCol.FormatConditions.Add(ExcelApp.XlFormatConditionType.xlCellValue, ExcelApp.XlFormatConditionOperator.xlNotEqual, "I AM DUMB FOR DEFINING DEFAULT FORMAT");
+
+                        ApplyBorderStyle(parms.DefaultCellFormat.Border, dummyCond.Borders, true);
+                        ApplyFontStyle(parms.DefaultCellFormat, dummyCond.Font);
+                        ApplyInteriorStyle(parms.DefaultCellFormat, dummyCond.Interior);
+
                     }
                     sheet.Application.ActiveWindow.SplitRow = 1;
                     sheet.Application.ActiveWindow.FreezePanes = true;
@@ -89,6 +100,45 @@ namespace Com.Ericmas001.Office.Excel
                     ExportationEnded(this, new EventArgs<bool>(false));
                 }
             })).Start();
+        }
+
+        private void ApplyStyle(ExcelApp.Range excelRange, ExcelFormat cellFormat)
+        {
+            ApplyBorderStyle(cellFormat.Border, excelRange.Borders);
+            ApplyFontStyle(cellFormat, excelRange.Font);
+            ApplyInteriorStyle(cellFormat, excelRange.Interior);
+        }
+
+        private void ApplyFontStyle(ExcelFormat cellFormat, ExcelApp.Font font)
+        {
+            font.Bold = cellFormat.Bold;
+
+            if (cellFormat.ForeColor.HasValue)
+                font.Color = ColorTranslator.ToOle(cellFormat.ForeColor.Value);
+        }
+        private void ApplyInteriorStyle(ExcelFormat cellFormat, ExcelApp.Interior interior)
+        {
+            if (cellFormat.BackColor.HasValue)
+                interior.Color = ColorTranslator.ToOle(cellFormat.BackColor.Value);
+        }
+
+        private static void ApplyBorderStyle(ExcelBorder borderFormat, ExcelApp.Borders border, bool isConditionnalFormatting = false)
+        {
+            var sides = new[] {ExcelApp.XlBordersIndex.xlEdgeLeft, ExcelApp.XlBordersIndex.xlEdgeRight, ExcelApp.XlBordersIndex.xlEdgeTop, ExcelApp.XlBordersIndex.xlEdgeBottom, ExcelApp.XlBordersIndex.xlInsideVertical, ExcelApp.XlBordersIndex.xlInsideHorizontal};
+            var condFormatSides = new[] { ExcelApp.Constants.xlLeft, ExcelApp.Constants.xlRight, ExcelApp.Constants.xlTop, ExcelApp.Constants.xlBottom }.Cast<ExcelApp.XlBordersIndex>();
+            if (borderFormat != null)
+            {
+                foreach (var side in isConditionnalFormatting ? condFormatSides : sides)
+                {
+                    border[side].LineStyle = borderFormat.BorderStyle;
+
+                    if (borderFormat.BorderColor.HasValue)
+                        border[side].Color = borderFormat.BorderColor.Value;
+
+                    if (borderFormat.BorderThickness.HasValue)
+                        border[side].Weight = borderFormat.BorderThickness.Value;
+                }
+            }
         }
     }
 }

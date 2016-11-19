@@ -7,11 +7,10 @@ using Microsoft.Office.Interop.Excel;
 
 namespace Com.Ericmas001.Office.Excel.ExportParms
 {
-    public class ExcelFormat
+    public class ExcelBorder
     {
-        public Color? ForeColor { get; set; }
-        public Color? BackColor { get; set; }
-        public bool Bold { get; set; }
-        public ExcelBorder Border { get; set; }
+        public XlLineStyle BorderStyle { get; set; }
+        public Color? BorderColor { get; set; }
+        public double? BorderThickness { get; set; }
     }
 }
