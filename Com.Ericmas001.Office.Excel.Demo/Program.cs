@@ -82,6 +82,12 @@ namespace Com.Ericmas001.Office.Excel.Demo
             };
 
             parms.ColumnParms.Add(FAVORITE, favColPArms);
+            var fruitColPArms = new ColumnExportParm
+            {
+                EnumValues = fruits
+            };
+
+            parms.ColumnParms.Add(FRUIT, fruitColPArms);
 
             new ExcelExporter().ExportDataTable(table, parms);
         }

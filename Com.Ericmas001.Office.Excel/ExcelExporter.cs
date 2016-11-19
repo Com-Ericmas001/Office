@@ -61,6 +61,16 @@ namespace Com.Ericmas001.Office.Excel
                         var colId = cols.IndexOf(colName)+1;
                         var xlCol = sheet.Range[sheet.Cells[2, colId], sheet.Cells[totalCount + 1, colId]];
 
+                        if (col.EnumValues != null)
+                        {
+                            xlCol.Validation.Add(ExcelApp.XlDVType.xlValidateList
+                                , ExcelApp.XlDVAlertStyle.xlValidAlertInformation
+                                , ExcelApp.XlFormatConditionOperator.xlBetween
+                                , string.Join(";", col.EnumValues)
+                                , Type.Missing);
+                            xlCol.Validation.InCellDropdown = true;
+                            xlCol.Validation.ShowError = false;
+                        }
                         var style = excelWorkbook.Styles.Add("col#" + colId);
                         style.HorizontalAlignment = col.HorizontalAlignment;
                         style.VerticalAlignment = col.VerticalAlignment;

@@ -11,6 +11,7 @@ namespace Com.Ericmas001.Office.Excel.ExportParms
         public XlHAlign HorizontalAlignment { get; set; }
         public XlVAlign VerticalAlignment { get; set; }
         public IEnumerable<ExcelConditionnalFormating> FormatConditions { get; set; } 
+        public string[] EnumValues { get; set; }
 
         public ColumnExportParm()
         {
