@@ -22,5 +22,3 @@ mkdir Build\lib
 mkdir Build\lib\net40
 
 %nuget% pack "Access.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"
-%nuget% pack "Excel.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"
-%nuget% pack "Word.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"
