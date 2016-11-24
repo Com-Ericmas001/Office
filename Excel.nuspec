@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Com.Ericmas001.Office.Excel</id>
+        <version>$version$</version>
+        <title>Com.Ericmas001.Office.Excel</title>
+        <authors>Ericmas001</authors>
+        <licenseUrl>https://raw.githubusercontent.com/Com-Ericmas001/Office/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/Com-Ericmas001/Office</projectUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>Com.Ericmas001.Office.Excel</description>
+        <summary>Com.Ericmas001.Office.Excel</summary>
+        <releaseNotes>Development Version</releaseNotes>
+        <copyright />
+        <language>en</language>
+        <dependencies>
+            <dependency id="Microsoft.Office.Interop.Excel" version="15.0.4795.1000" />
+            <dependency id="Com.Ericmas001.Common" version="0.4.1" />
+        </dependencies>
+    </metadata>
+    <files>
+    	<file src="Com.Ericmas001.Office.Excel\bin\$configuration$\Com.Ericmas001.Office.Excel.dll" target="lib\net40\" />
+  </files>
+</package>
