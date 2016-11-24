@@ -1,4 +1,4 @@
-# Com.Ericmas001.Office
+# Com.Ericmas001.Office 
 [![com-ericmas001 MyGet Build Status](https://www.myget.org/BuildSource/Badge/com-ericmas001?identifier=ae580b56-d40c-4b33-951b-6d7911a444f2)](https://www.myget.org/)
 
 <table align="center" width="100%">
